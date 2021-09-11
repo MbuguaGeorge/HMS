@@ -28,7 +28,7 @@ SECRET_KEY = '0k-mnq_9wv43urdst2urh9+^cwz5#4hheip&$zsbx_+0@nel7)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1","localhost", "6929-154-159-238-106.ngrok.io",]
 
 
 # Application definition
@@ -78,14 +78,22 @@ TEMPLATES = [
 WSGI_APPLICATION = 'HMS.wsgi.application'
 
 CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000"
+    "http://127.0.0.1:3000",
+   
+  
 ]
 
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
 DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite',
+    }
+}       
+
+"""DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'hms',
@@ -94,7 +102,7 @@ DATABASES = {
         'HOST':'127.0.0.1',
         'PORT':'5432',
     }
-}
+}"""
 
 AUTH_USER_MODEL = 'API.Profile'
 
