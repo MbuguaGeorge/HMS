@@ -1,5 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.dispatch import receiver
+from django_rest_passwordreset.signals import reset_password_token_created
+from django.core.mail import send_mail
+from django.urls import reverse
+
 
 # Create your models here.
 class Profile(AbstractUser):
@@ -12,3 +17,9 @@ class Profile(AbstractUser):
 
     def __str__(self):
         return self.username
+
+#post signal for token pass reset
+@receiver(reset_password_token_created)
+def password_reset_token_created(sender,instance,reset_password_token,*args,**kwargs):
+    email_plainttext_message="{}?token={}".format(reverse('password_reset:reset-password-request'),reset_password_token.key)
+    send_mail("Password reset for {title}".format(title="Maseno HMS"),email_plainttext_message,"infotdbsoft@gmail.com",[reset_password_token.user.email])       
