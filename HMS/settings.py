@@ -35,6 +35,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'API',
+    'django_rest_passwordreset',
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
@@ -87,6 +88,13 @@ CORS_ORIGIN_WHITELIST = [
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite',
+    }
+}
+
+"""DATABASES = {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'hms',
         'USER':'postgres',
@@ -94,7 +102,7 @@ DATABASES = {
         'HOST':'127.0.0.1',
         'PORT':'5432',
     }
-}
+}"""
 
 AUTH_USER_MODEL = 'API.Profile'
 
