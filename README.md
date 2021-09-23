@@ -1,4 +1,4 @@
-# Django Rest API for Maseno HMS by TDBSoft
+# Django Rest API for Maseno Town HMS by TDBSoft
 
 
 ## Setup
