@@ -35,6 +35,7 @@ ALLOWED_HOSTS = ["127.0.0.1","localhost", "80cc-196-111-255-90.ngrok.io",]
 
 INSTALLED_APPS = [
     'API',
+    'django_rest_passwordreset',
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
@@ -89,9 +90,9 @@ CORS_ORIGIN_WHITELIST = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite',
+        'NAME': BASE_DIR / 'db.sqlite'
     }
-}       
+}
 
 """DATABASES = {
     'default': {
@@ -104,7 +105,9 @@ DATABASES = {
     }
 }"""
 
+
 AUTH_USER_MODEL = 'API.Profile'
+EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
