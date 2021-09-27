@@ -87,23 +87,23 @@ CORS_ORIGIN_WHITELIST = [
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-DATABASES = {
+"""DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite'
     }
-}
+}"""
 
-"""DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'hms',
-        'USER':'postgres',
-        'PASSWORD':'George026#',
-        'HOST':'127.0.0.1',
+        'NAME': 'd67tku3jkmiq5a',
+        'USER':'qsjvojxmdqiwxc',
+        'PASSWORD':'dd2431dab91ed8ca63e181e7923f119811fadb9281af9111dc1de82b18c212f0',
+        'HOST':'ec2-44-194-68-175.compute-1.amazonaws.com',
         'PORT':'5432',
     }
-}"""
+}
 
 
 AUTH_USER_MODEL = 'API.Profile'
