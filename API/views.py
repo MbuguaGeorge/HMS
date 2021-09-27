@@ -1,6 +1,8 @@
-from .serializers import ProfileSerializer
+from .serializers import ProfileSerializer, ListSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import permissions
+from rest_framework import generics
+from .models import Profile
 from rest_framework.response import Response
 
 # Create your views here.
@@ -21,3 +23,10 @@ def registration(request):
         else:
             data = serializer.errors
         return Response(data)
+
+class userList(generics.ListAPIView):
+    lookup_field = 'pk'
+    serializer_class = ListSerializer
+
+    def get_queryset(self):
+        return Profile.objects.all()
