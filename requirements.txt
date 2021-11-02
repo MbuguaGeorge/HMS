@@ -10,7 +10,6 @@ djangorestframework==3.12.4
 gunicorn==20.1.0
 Pillow==8.3.2
 psycopg2
-psycopg2-binaries
 python-dotenv
 pytz==2021.1
 sqlparse==0.4.2
