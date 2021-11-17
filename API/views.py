@@ -4,6 +4,8 @@ from rest_framework import permissions
 from rest_framework import generics
 from .models import Profile
 from rest_framework.response import Response
+from rest_framework.authtoken.models import Token
+
 
 # Create your views here.
 @api_view(['POST',])
@@ -14,11 +16,13 @@ def registration(request):
         data = {}
         if serializer.is_valid():
             user = serializer.save()
+            token = Token.objects.create(user=user)
             data['response'] = "success"
             data['email'] = user.email
             data['username'] = user.username
             data['phone'] = user.phone
             data['identification'] = user.identification
+            data['token']=token.key
            # data['thumbnail'] = user.thumbnail
         else:
             data = serializer.errors

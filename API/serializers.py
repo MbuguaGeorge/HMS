@@ -3,11 +3,11 @@ from .models import Profile
 
 class ProfileSerializer(serializers.ModelSerializer):
 
-    password2 = serializers.CharField(style={'input_type' : 'password'}, write_only=True)
+   #password2 = serializers.CharField(style={'input_type' : 'password'}, write_only=True)
 
     class Meta:
         model = Profile
-        fields = ('username', 'email', 'password', 'password2', 'phone', 'identification', 'thumbnail')
+        fields = ('username', 'email', 'password', 'phone', 'identification', 'thumbnail')
         extra_kwargs = {
             'password' : {'write_only' : True} 
         }
@@ -20,10 +20,10 @@ class ProfileSerializer(serializers.ModelSerializer):
             #thumbnail = self.validated_data['thumbnail'],
         )
         password = self.validated_data['password']
-        password2 = self.validated_data['password2']
+        #password2 = self.validated_data['password2']
 
-        if password != password2:
-            raise serializers.ValidationError({'password' : 'passwords must match'})
+        # if password != password2:
+        #     raise serializers.ValidationError({'password' : 'passwords must match'})
         user.set_password(password)
         user.save()
         return user

@@ -4,6 +4,7 @@ from django.dispatch import receiver
 from django_rest_passwordreset.signals import reset_password_token_created
 from django.core.mail import send_mail
 from django.urls import reverse
+from rest_framework.authtoken.models import Token
 
 
 # Create your models here.
@@ -13,7 +14,7 @@ class Profile(AbstractUser):
     password = models.CharField(('password'), max_length=128, help_text=("use'[algo]$[salt]$[hexdigest]'"))
     phone = models.IntegerField(unique=True, default=72835215)
     identification = models.IntegerField(unique=True, default=36827354)
-    thumbnail = models.ImageField(blank=True)
+    thumbnail = models.ImageField(blank=True,null=True)
 
     def __str__(self):
         return self.username
