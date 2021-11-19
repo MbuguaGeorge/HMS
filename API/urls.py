@@ -3,7 +3,7 @@ from API.views import *
 
 urlpatterns = [
     path('register',registration),
-    path('users',userList.as_view()),
+    path('user/',GetUser),
 ]
 
 urlpatterns += [

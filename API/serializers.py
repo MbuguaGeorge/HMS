@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from .models import Profile
+from rest_framework.authtoken.models import Token
+
 
 class ProfileSerializer(serializers.ModelSerializer):
 
@@ -28,7 +30,8 @@ class ProfileSerializer(serializers.ModelSerializer):
         user.save()
         return user
 
-class ListSerializer(serializers.ModelSerializer):
+        
+class GetUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ('username', 'email', 'pk', 'phone', 'identification')
+        fields = ('username','email')     
