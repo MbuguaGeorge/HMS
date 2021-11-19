@@ -25,6 +25,28 @@ class Profile(AbstractUser):
 def password_reset_token_created(sender,instance,reset_password_token,*args,**kwargs):
     email_plainttext_message="{}?token={}".format(reverse('password_reset:reset-password-request'),reset_password_token.key)
     send_mail("Password reset for {title}".format(title="Maseno HMS"),email_plainttext_message,"infotdbsoft@gmail.com",[reset_password_token.user.email])     
-     
-    
-    
+
+class Room(models.Model):
+    room_no = models.PositiveIntegerField()
+
+class Block(models.Model):
+    block_name = models.CharField(max_length=20)
+    room = models.ForeignKey(Room, on_delete=models.CASCADE)
+
+class Hostel_Manager(models.Model):
+    full_name = models.CharField(max_length=20)
+    phone_no = models.PositiveIntegerField()
+
+class Caretaker(models.Model):
+    full_name = models.CharField(max_length=20)
+    phone_no = models.PositiveIntegerField()
+
+class Hostel(models.Model):
+    hostel_name = models.CharField(max_length=20)
+    hostel_location = models.CharField(max_length=20)
+    hostel_image = models.ImageField()
+    hostel_description = models.TextField()
+    room = models.ForeignKey(Room, on_delete=models.CASCADE)
+    hostel_manager = models.ForeignKey(Hostel_Manager, on_delete=models.CASCADE)
+    hostel_caretaker = models.ForeignKey(Caretaker, on_delete=models.CASCADE)
+    hostel_block = models.ForeignKey(Block, on_delete=models.CASCADE)

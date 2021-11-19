@@ -88,6 +88,7 @@ CORS_ORIGIN_WHITELIST = [
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -95,7 +96,6 @@ DATABASES = {
     }
 }
 
-"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -108,6 +108,18 @@ DATABASES = {
 }
 """
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'hms',
+        'USER':'postgres',
+        'PASSWORD':'George026#',
+        'HOST':'127.0.0.1',
+        'PORT':'5432',
+    }
+}
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'API.Profile'
 EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
 
