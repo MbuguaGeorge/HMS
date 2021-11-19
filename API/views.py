@@ -4,6 +4,7 @@ from rest_framework import permissions
 from rest_framework import generics
 from .models import Profile
 from rest_framework.response import Response
+from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 
 
@@ -16,13 +17,12 @@ def registration(request):
         data = {}
         if serializer.is_valid():
             user = serializer.save()
-            token = Token.objects.create(user=user)
+            token,created=Token.objects.get_or_create(user=user)
             data['response'] = "success"
             data['email'] = user.email
             data['username'] = user.username
             data['phone'] = user.phone
             data['identification'] = user.identification
-            data['token']=token.key
            # data['thumbnail'] = user.thumbnail
         else:
             data = serializer.errors
@@ -34,3 +34,19 @@ class userList(generics.ListAPIView):
 
     def get_queryset(self):
         return Profile.objects.all()
+
+
+class CustomAuthToken(ObtainAuthToken):
+    
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data,
+                                           context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data['user']
+        token, created = Token.objects.get_or_create(user=user)
+        return Response({
+            'token': token.key,
+            'user_id': user.pk,
+            'email': user.email,
+            'username':user.username,
+        })

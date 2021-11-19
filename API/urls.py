@@ -1,7 +1,11 @@
 from django.urls import path
-from API import views
+from API.views import *
 
 urlpatterns = [
-    path('register', views.registration),
-    path('users', views.userList.as_view())
+    path('register',registration),
+    path('users',userList.as_view()),
+]
+
+urlpatterns += [
+    path('api/token/', CustomAuthToken.as_view())
 ]
